@@ -1,0 +1,145 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.21/MicrosoftTeams.schema.json",
+    "id": "d1517bbe-5214-44cd-8e91-2446d37d25af",
+    "manifestVersion": "1.21",
+    "version": "1.0.0",
+    "name": {
+        "short": "Job cc",
+        "full": "Job cc"
+    },
+    "description": {
+        "short": "Adds Job+{oppnumber} to ccRecipients",
+        "full": "dds Job+{oppnumber} to ccRecipients"
+    },
+    "developer": {
+        "name": "TJM Promos",
+        "websiteUrl": "https://tjmpromos.com",
+        "privacyUrl": "https://tjmpromos.com",
+        "termsOfUseUrl": "https://tjmpromos.com"
+    },
+    "icons": {
+        "outline": "assets/tjmlogo.png",
+        "color": "assets/tjmlogo.png"
+    },
+    "accentColor": "#230201",
+    "localizationInfo": {
+        "defaultLanguageTag": "en-us"
+    },
+    "authorization": {
+        "permissions": {
+            "resourceSpecific": [
+                {
+                    "name": "MailboxItem.ReadWrite.User",
+                    "type": "Delegated"
+                }
+            ]
+        }
+    },
+    "validDomains": [
+        "https://localhost:3000"
+    ],
+    "extensions": [
+        {
+
+            "requirements": {
+                "scopes": [
+                    "mail"
+                ],
+                "capabilities": [
+                    {
+                        "name": "Mailbox",
+                        "minVersion": "1.15"
+                    }
+                ]
+            },
+            "runtimes": [
+                {
+                    "requirements": {
+                        "capabilities": [
+                            {
+                                "name": "Mailbox",
+                                "minVersion": "1.15"
+                            }
+                        ]
+                    },
+                    "id": "TaskPaneRuntime",
+                    "type": "general",
+                    "code": {
+                        "page": "https://localhost:3000/taskpane.html"
+                    },
+                    "lifetime": "short",
+                    "actions": [
+                        {
+                            "id": "TaskPaneRuntimeShow",
+                            "type": "openPage",
+                            "pinnable": true
+                        },
+                        {
+                        "id": "addJobToCC",
+                        "type": "executeFunction",
+                        "displayName": "insert Job+ to ccRecipients"
+                        }
+                    ]
+                }
+            ],
+            "ribbons": [
+                {
+                    "contexts": [
+                        "mailCompose"
+                    ],
+                    "tabs": [
+                        {
+                            "builtInTabId": "TabDefault",
+                            "groups": [
+                                {
+                                    "id": "msgComposeGroup",
+                                    "label": "Contoso Add-in",
+                                    "icons": [
+                                        {
+                                            "size": 16,
+                                            "url": "https://localhost:3000/assets/icon-16.png"
+                                        },
+                                        {
+                                            "size": 32,
+                                            "url": "https://localhost:3000/assets/icon-32.png"
+                                        },
+                                        {
+                                            "size": 80,
+                                            "url": "https://localhost:3000/assets/tjmlogo.png"
+                                        }
+                                    ],
+                                    "controls": [
+                                        {
+                                            "id": "msgComposeOpenPaneButton",
+                                            "type": "button",
+                                            "label": "Job CC",
+                                            "icons": [
+                                                {
+                                                    "size": 16,
+                                                    "url": "https://localhost:3000/assets/tjmlogo.png"
+                                                },
+                                                {
+                                                    "size": 32,
+                                                    "url": "https://localhost:3000/assets/tjmlogo.png"
+                                                },
+                                                {
+                                                    "size": 80,
+                                                    "url": "https://localhost:3000/assets/tjmlogo.png"
+                                                }
+                                            ],
+                                            "supertip": {
+                                                "title": "Job CC",
+                                                "description": "Open the Job CC Addin"
+                                            },
+                                            "actionId": "TaskPaneRuntimeShow"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 {
     "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.21/MicrosoftTeams.schema.json",
-    "id": "d1517bbe-5214-44cd-8e91-2446d37d25af",
+    "id": "0431afed-daf5-4d14-9770-125060723f75",
     "manifestVersion": "1.21",
     "version": "1.0.0",
     "name": {
@@ -9,7 +9,7 @@
     },
     "description": {
         "short": "Adds Job+{oppnumber} to ccRecipients",
-        "full": "dds Job+{oppnumber} to ccRecipients"
+        "full": "Adds Job+{oppnumber} to ccRecipients"
     },
     "developer": {
         "name": "TJM Promos",

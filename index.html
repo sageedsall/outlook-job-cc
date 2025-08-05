@@ -15,53 +15,44 @@
     Office.onReady((info) => {
         if (info.host === Office.HostType.Outlook) {
             document.getElementById("jobcc").onclick = addJobToCc;
-            // Trigger as soon as the add-in panel is opened
             addJobToCc();
         }
     });
 
     async function addJobToCc() {
-        // Helper to extract 9-digit job number starting with 300
         function extractJobNumber(text) {
             var match = text.match(/\b(300\d{6})\b/);
             return match ? match[1] : null;
         }
 
-        // Remove any existing job number input box
         let existingBox = document.getElementById("jobNumberBoxContainer");
         if (existingBox) existingBox.remove();
 
-        // Get the "from" address of the current item
         Office.context.mailbox.item.from.getAsync(function(result) {
             if (result.status === Office.AsyncResultStatus.Succeeded && result.value && result.value.emailAddress) {
                 var fromAddress = result.value.emailAddress;
                 var domain = fromAddress.substring(fromAddress.indexOf('@') + 1);
 
-                // Get subject
                 Office.context.mailbox.item.subject.getAsync(function(subjectResult) {
                     var subject = (subjectResult.status === Office.AsyncResultStatus.Succeeded && subjectResult.value) ? subjectResult.value : "";
 
-                    // Get body
+
                     Office.context.mailbox.item.body.getAsync(Office.CoercionType.Text, function(bodyResult) {
                         var body = (bodyResult.status === Office.AsyncResultStatus.Succeeded && bodyResult.value) ? bodyResult.value : "";
 
-                        // Try to extract job number from subject or body
                         var jobNumber = extractJobNumber(subject) || extractJobNumber(body);
 
-                        // If no job number, show a box for user input
+
                         if (!jobNumber) {
-                            // Create container
                             var container = document.createElement("div");
                             container.id = "jobNumberBoxContainer";
                             container.style.marginTop = "10px";
 
-                            // Label
                             var label = document.createElement("label");
                             label.htmlFor = "jobNumberBox";
                             label.innerText = "Enter job number: ";
                             container.appendChild(label);
 
-                            // Input
                             var input = document.createElement("input");
                             input.type = "text";
                             input.id = "jobNumberBox";
@@ -70,7 +61,6 @@
                             input.style.marginRight = "8px";
                             container.appendChild(input);
 
-                            // Button
                             var btn = document.createElement("button");
                             btn.innerText = "Add CC";
                             btn.onclick = function() {
@@ -78,7 +68,6 @@
                                 if (/^300\d{6}$/.test(val)) {
                                     addJobCcWithNumber(val, domain);
                                     container.remove();
-                                    // Also close the panel after adding the CC
                                     if (Office.context.ui && Office.context.ui.closeContainer) {
                                         Office.context.ui.closeContainer();
                                     }
@@ -100,7 +89,6 @@
                             return;
                         }
 
-                        // If job number found, proceed
                         addJobCcWithNumber(jobNumber, domain);
                     });
                 });
@@ -113,7 +101,6 @@
         });
     }
 
-    // Helper to set the CC and close the panel
     function addJobCcWithNumber(jobNumber, domain) {
         var jobEmail = "job+" + jobNumber + "@" + domain;
         Office.context.mailbox.item.cc.setAsync(
@@ -122,7 +109,6 @@
                 if (setResult.status === Office.AsyncResultStatus.Failed) {
                     writeToBody(setResult.error.message);
                 }
-                // Close the add-in panel after the action completes
                 if (Office.context.ui && Office.context.ui.closeContainer) {
                     Office.context.ui.closeContainer();
                 }
@@ -130,7 +116,6 @@
         );
     }
 
-    // Write error messages into the body of the email
     function writeToBody(message) {
         Office.context.mailbox.item.body.appendOnSendAsync(
             "<div style='color:red'>Add-in error: " + message + "</div>",

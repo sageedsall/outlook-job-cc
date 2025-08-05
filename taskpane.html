@@ -28,7 +28,6 @@
         let existingBox = document.getElementById("jobNumberBoxContainer");
         if (existingBox) existingBox.remove();
 
-        // Get the "from" address of the current item
         Office.context.mailbox.item.from.getAsync(function(result) {
             if (result.status === Office.AsyncResultStatus.Succeeded && result.value && result.value.emailAddress) {
                 var fromAddress = result.value.emailAddress;
@@ -53,7 +52,6 @@
                             label.innerText = "Enter job number: ";
                             container.appendChild(label);
 
-                            // Input
                             var input = document.createElement("input");
                             input.type = "text";
                             input.id = "jobNumberBox";
@@ -62,7 +60,6 @@
                             input.style.marginRight = "8px";
                             container.appendChild(input);
 
-                            //Button
                             var btn = document.createElement("button");
                             btn.innerText = "Add CC";
                             btn.onclick = function() {
@@ -71,7 +68,6 @@
                                     addJobCcWithNumber(val, domain);
                                     container.remove();
 
-                                //close panel
                                     if (Office.context.ui && Office.context.ui.closeContainer) {
                                         Office.context.ui.closeContainer();
                                     }
@@ -93,7 +89,7 @@
                             return;
                         }
 
-                        // If job number found, proceed
+
                         addJobCcWithNumber(jobNumber, domain);
                     });
                 });

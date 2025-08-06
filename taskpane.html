@@ -104,17 +104,13 @@
 
     function addJobCcWithNumber(jobNumber, domain) {
         var jobEmail = "job+" + jobNumber + "@" + domain;
+        Office.context.mailbox.item.cc.setAsync([jobEmail]);
+        //Recipients.Item(1).Type = olCC;
         Office.context.mailbox.item.cc.setAsync(
             [{ emailAddress: jobEmail }],
-            function(setResult) {
-                if (setResult.status === Office.AsyncResultStatus.Failed) {
-                    writeToBody(setResult.error.message);
-                }
-                if (Office.context.ui && Office.context.ui.closeContainer) {
-                    Office.context.ui.closeContainer();
-                }
-            }
         );
+        Office.context.ui.closeContainer();
+
     }
 
     function writeToBody(message) {

@@ -2,7 +2,7 @@
     "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.21/MicrosoftTeams.schema.json",
     "id": "0431afed-daf5-4d14-9770-125060723f75",
     "manifestVersion": "1.21",
-    "version": "1.0.0",
+    "version": "1.2.1",
     "name": {
         "short": "Job cc",
         "full": "Job cc"
@@ -36,7 +36,7 @@
         }
     },
     "validDomains": [
-        "https://sageedsall.github.io"
+        "https://tjmpromos.github.io"
     ],
     "extensions": [
         {
@@ -65,7 +65,7 @@
                     "id": "TaskPaneRuntime",
                     "type": "general",
                     "code": {
-                        "page": "https://sageedsall.github.io/taskpane.html"
+                        "page": "https://tjmpromos.github.io/taskpane.html"
                     },
                     "lifetime": "short",
                     "actions": [
@@ -97,15 +97,15 @@
                                     "icons": [
                                         {
                                             "size": 16,
-                                            "url": "https://sageedsall.github.io/assets/icon-16.png"
+                                            "url": "https://tjmpromos.github.io/assets/icon-16.png"
                                         },
                                         {
                                             "size": 32,
-                                            "url": "https://sageedsall.github.io/assets/icon-32.png"
+                                            "url": "https://tjmpromos.github.io/assets/icon-32.png"
                                         },
                                         {
                                             "size": 80,
-                                            "url": "https://sageedsall.github.io/assets/tjmlogo.png"
+                                            "url": "https://tjmpromos.github.io/assets/tjmlogo.png"
                                         }
                                     ],
                                     "controls": [
@@ -116,15 +116,15 @@
                                             "icons": [
                                                 {
                                                     "size": 16,
-                                                    "url": "https://sageedsall.github.io/assets/tjmlogo.png"
+                                                    "url": "https://tjmpromos.github.io/assets/tjmlogo.png"
                                                 },
                                                 {
                                                     "size": 32,
-                                                    "url": "https://sageedsall.github.io/assets/tjmlogo.png"
+                                                    "url": "https://tjmpromos.github.io/assets/tjmlogo.png"
                                                 },
                                                 {
                                                     "size": 80,
-                                                    "url": "https://sageedsall.github.io/assets/tjmlogo.png"
+                                                    "url": "https://tjmpromos.github.io/assets/tjmlogo.png"
                                                 }
                                             ],
                                             "supertip": {
